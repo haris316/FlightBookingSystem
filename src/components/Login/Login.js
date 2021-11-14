@@ -1,13 +1,12 @@
 import React from "react";
 import "./Login.css";
-import axios from 'axios';
+import axios from "axios";
 import { useHistory } from "react-router-dom";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
-const Login = ({setLoginUser}) => {
-
+const Login = ({ setLoginUser }) => {
   const History = useHistory();
-  console.log()
+  console.log();
   const [user, setUser] = React.useState({
     email: "",
     password: "",
@@ -23,13 +22,12 @@ const Login = ({setLoginUser}) => {
   const login = () => {
     const { email, password } = user;
     if (email && password) {
-      axios.post("http://localhost:9002/api/user/login", user)
-      .then((res) => {
-        alert(res.data.message)
-        if(res.data.success === true){
-          console.log(res.status)
+      axios.post("http://localhost:9002/api/user/login", user).then((res) => {
+        alert(res.data.message);
+        if (res.data.success === true) {
+          console.log(res.status);
           setLoginUser(res.data);
-          History.push("/")          
+          History.push("/admin");
         }
       });
     } else {
@@ -38,55 +36,57 @@ const Login = ({setLoginUser}) => {
   };
 
   return (
-    <div className='container'>
-        <div style={{ marginTop: '3rem' }} className='row'>
-          <div className='col s8 offset-s2'>
-            
-            <div className='col s12' style={{ paddingLeft: '11.250px' }}>
+    <div className="login_body">
+      <div className="login_container">
+      <div className="login_containerBox">
+        <div style={{ marginTop: "3rem" }} className="row">
+          <div className="col s8 offset-s2">
+            <div className="col s12" style={{ paddingLeft: "11.250px" }}>
               <h4>
                 <b>Login</b>
               </h4>
-              <p className='grey-text text-darken-1'>
-                Don't have an account? <Link to='/signup'>Sign-Up</Link>
+              <p className="grey-text text-darken-1">
+                Don't have an account? <Link to="/signup">Sign-Up</Link>
               </p>
             </div>
-            
-              <div className='input-field col s12'>
-                <input
-                  onChange={handleChange}
-                  value={user.email}
-                  type='text'
-                  name='email'
-                />
-                <label htmlFor='email'>Email</label>
-              </div>
-              <div className='input-field col s12'>
-                <input
-                  onChange={handleChange}
-                  value={user.password}
-                  type='password'
-                  name='password'
-                />
-                <label htmlFor='password'>Password</label>
-              </div>
-              <div className='col s12' style={{ paddingLeft: '11.250px' }}>
-                <button
-                  style={{
-                    width: '150px',
-                    borderRadius: '3px',
-                    letterSpacing: '1.5px',
-                    marginTop: '1rem'
-                  }}
-                  onClick={login}
-                  className='btn btn-large waves-effect waves-light hoverable blue accent-3'
-                >
-                  Login
-                </button>
-              </div>
-            
+
+            <div className="input-field col s12">
+              <input
+                onChange={handleChange}
+                value={user.email}
+                type="text"
+                name="email"
+              />
+              <label htmlFor="email">Email</label>
+            </div>
+            <div className="input-field col s12">
+              <input
+                onChange={handleChange}
+                value={user.password}
+                type="password"
+                name="password"
+              />
+              <label htmlFor="password">Password</label>
+            </div>
+            <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+              <button
+                style={{
+                  width: "150px",
+                  borderRadius: "3px",
+                  letterSpacing: "1.5px",
+                  marginTop: "1rem",
+                }}
+                onClick={login}
+                className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+              >
+                Login
+              </button>
+            </div>
           </div>
         </div>
       </div>
+      </div>
+    </div>
   );
 };
 
