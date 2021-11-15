@@ -1,36 +1,62 @@
 import React from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import del from "../../../assets/delete.png";
 import "./Users.css";
 
 function Users() {
   const [data, setData] = React.useState([]);
   React.useEffect(() => {
     axios.get("http://localhost:9002/api/user/getAllUsers").then((res) => {
-    console.log(res);  
-    if (res.data.success === true) {
+      console.log(res);
+      if (res.data.success === true) {
         console.log(res.status);
         setData(res.data.data);
       }
     });
-  },[])
+  }, []);
+  const deleteUser = (name, password, email, key) => {
+    const collection = {
+      name: name,
+      password: password,
+      email: email,
+      key: key,
+    };
+    axios
+      .post("http://localhost:9002/api/user/removeUser", collection)
+      .then((res) => {
+        console.log(res);
+        if (res.data.success === true) {
+          console.log(res.status);
+          alert("User Deleted Successfully. Refresh Page");
+        }
+      });
+  };
   const listUsers = () => {
-    if (data.length>0) {
+    if (data.length > 0) {
       return data.map((value) => (
         <div className="oneUser">
           <img src={value.profilePicture} className="oneUser_picture" />
           <div className="oneUser_text">{value.name}</div>
           <div className="oneUser_text">{value.email}</div>
           <div className="oneUser_text">{value.contactNumber}</div>
-          <Link to="/admin/editUser"><div className="oneUser_icon" >X</div></Link>
+            <img
+              onClick={() => {
+                deleteUser(value.name, value.password, value.email, "01135813");
+              }}
+              className="oneUser_icon"
+              src={del}
+              alt="DELETE"
+            />
         </div>
       ));
     } else {
-      return <>
-        <div>
-          <p>Loading...</p>
-        </div>
-      </>;
+      return (
+        <>
+          <div>
+            <p>Loading...</p>
+          </div>
+        </>
+      );
     }
   };
   return (
