@@ -3,8 +3,11 @@
   min-width: 100%;
   max-width: 100%;
   min-height: 100vh;
-  background-color: rgba(255, 255, 103, 0.377);
+  max-height: 100vh;
+  background-image: url("../../assets/bg.jfif");
+  background-size: cover;
 }
+
 .ProfileBox {
   margin: auto auto;
   display: flex;
@@ -14,46 +17,12 @@
   border-radius: 8px;
   width: 60vw;
   background-color: rgba(255, 255, 255, 0.5);
-  height:max-content;
+  height: max-content;
 }
 .Profile_picture {
-  min-width: 18%;
-  max-width: 18%;
-  min-height: 25vh;
-  max-height: 25vh;
   border: 1px solid black;
-  margin: 20px;
-}
-.Profile_textBox {
-  width: 70%;
-}
-.Profile_subTextBox {
-    margin: 25px 10px;
-  display: flex;
-  flex-wrap: wrap;
-}
-.Profile_desc {
-  padding-top: 10px;
-    width: 25%;
-    margin: 0 10px;
-  font-size: 20px;
-  color: black;
-  text-align: right;
-}
-.Profile_field {
-    padding: 0 10px;
-    min-width: 60%;
-    max-width: 60%;
-  border: 2px solid black;
-  border-radius: 4px;
-  font-size: 20px;
-  color: black;
-  text-align: left;
-}
-.profile_button{
-  margin: 10px auto;
-  padding : 5px;
-  background-color: rgba(255, 255, 103, 0.805);
-  width: 10vw;
-
+  margin: 5px;
+  margin-right: 5%;
+  margin-left: 3%;
+  width: 20%;
 }

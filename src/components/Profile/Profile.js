@@ -1,7 +1,6 @@
 import React from "react";
 import axios from "axios";
 import "./Profile.css";
-import { withRouter, RouteComponentProps } from "react-router";
 
 function Profile({ user, setLoginUser }) {
   // const [data, setData] = React.useState({
@@ -30,57 +29,90 @@ function Profile({ user, setLoginUser }) {
   const [name,setName]=React.useState(user.user.name);
   const [contact,setContact]=React.useState(user.user.contactNumber);
   const [password,setPassword]=React.useState(user.user.password);
+
+
+
   return (
-    <div className="ProfileContainer">
-      <h3>User Details</h3>
-      <div className="ProfileBox">
-        <img className="Profile_picture" src={user.user.profilePicture} />
+    <div className="ProfileContainer">     
+      <div style={{ marginTop: "3rem" }} className="ProfileBox row">
+
+        
+          <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+            <h4>
+              <b>User Details</b>
+            </h4>
+          </div>
+        
+    
+
+        <img className="Profile_picture" src={user.user.profilePicture} alt='profile-img' />
         <div className="Profile_textBox">
-          <div className="Profile_subTextBox">
-            <div className="Profile_desc">Full Name : </div>
-            <div className="Profile_field">
-            <input
-              type="text"
-              placeholder={name}
-              value={name}
-              onChange={(e) => {
-                setName(e.target.value);
-              }}
-            />
+          
+            <div className="input-field col s12">
+              <input
+                onChange={(e) => setName(e.target.value)}
+                value={name}
+                type="text"
+                name="name"
+              />
+              <label htmlFor="name">Full Name</label>
             </div>
-          </div>
-          <div className="Profile_subTextBox">
-            <div className="Profile_desc">Password : </div>
-            <div className="Profile_field">
-            <input
-              type="text"
-              placeholder={password}
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-            />
+
+
+
+            <div className="input-field col s12">
+              <input
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
+                type="password"
+                name="password"
+              />
+              <label htmlFor="password">Password</label>
             </div>
-          </div>
-          <div className="Profile_subTextBox">
-            <div className="Profile_desc">Contact Number : </div>
-            <div className="Profile_field">
-            <input
-              
-              type="text"
-              placeholder={contact}
-              value={contact}
-              onChange={(e) => {
-                setContact(e.target.value);
-              }}
-            />
+          
+          
+            <div className="input-field col s12">
+              <input
+                onChange={(e) => setContact(e.target.value)}
+                value={contact}
+                type="text"
+                name="contact"
+                
+              />
+              <label htmlFor="contact">Contact No.</label>
             </div>
-          </div>
+          
         </div>
       </div>
-      <div className="profile_button"> Update Details </div>
-      <div className="profile_button" onClick={() => setLoginUser(null)}>
-        Logout
+
+      <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+        <button
+          style={{
+            width: "150px",
+            borderRadius: "3px",
+            letterSpacing: "1.5px",
+            marginTop: "1rem",
+          }}
+          
+          className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+        >
+          Update
+        </button>
+      </div>
+
+      <div className="col s12" style={{ paddingLeft: "11.250px" }}>      
+        <button
+          style={{
+            width: "150px",
+            borderRadius: "3px",
+            letterSpacing: "1.5px",
+            marginTop: "1rem",
+          }}
+          onClick={() => { setLoginUser(null) }}
+          className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+        >
+          Logout
+        </button>
       </div>
     </div>
   );
