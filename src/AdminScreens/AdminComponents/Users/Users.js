@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import "./Users.css";
 
 function Users() {
@@ -21,6 +22,7 @@ function Users() {
           <div className="oneUser_text">{value.name}</div>
           <div className="oneUser_text">{value.email}</div>
           <div className="oneUser_text">{value.contactNumber}</div>
+          <Link to="/admin/editUser"><div className="oneUser_icon" >X</div></Link>
         </div>
       ));
     } else {

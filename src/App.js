@@ -4,6 +4,7 @@ import AdminHome from "./AdminScreens/AdminHome";
 import Home from "./components/Home/Home";
 import SignUp from "./components/SignUp/SignUp";
 import Login from "./components/Login/Login"
+import EditUser from "./AdminScreens/AdminComponents/EditUser/EditUser"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useState } from "react";
 
@@ -19,6 +20,9 @@ function App() {
         <Switch>
         <Route exact path="/admin">
             <AdminHome user={user} setLoginUser={setLoginUser} />
+          </Route>
+          <Route exact path="/admin/editUser">
+            <EditUser/>
           </Route>
           <Route exact path="/">
             <Home user={user} setLoginUser={setLoginUser} />
