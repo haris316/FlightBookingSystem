@@ -12,20 +12,20 @@
   border: 1px solid #dddfe2;
   box-shadow: 0 0 15px 2px #85b1ff;
   border-radius: 8px;
-  width: 80vw;
+  width: 60vw;
   background-color: rgba(255, 255, 255, 0.5);
-  height: 30vh;
+  height:max-content;
 }
 .Profile_picture {
-  min-width: 100px;
-  max-width: 100px;
-  min-height: 100px;
-  max-height: 100px;
+  min-width: 18%;
+  max-width: 18%;
+  min-height: 25vh;
+  max-height: 25vh;
   border: 1px solid black;
   margin: 20px;
 }
 .Profile_textBox {
-  width: 80%;
+  width: 70%;
 }
 .Profile_subTextBox {
     margin: 25px 10px;
@@ -33,15 +33,17 @@
   flex-wrap: wrap;
 }
 .Profile_desc {
+  padding-top: 10px;
     width: 25%;
-    margin: 0 5px;
+    margin: 0 10px;
   font-size: 20px;
   color: black;
   text-align: right;
 }
 .Profile_field {
     padding: 0 10px;
-    width: 60%;
+    min-width: 60%;
+    max-width: 60%;
   border: 2px solid black;
   border-radius: 4px;
   font-size: 20px;
