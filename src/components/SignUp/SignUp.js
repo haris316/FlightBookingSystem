@@ -3,14 +3,15 @@ import "./SignUp.css";
 import axios from "axios";
 import { useHistory, Link } from "react-router-dom";
 
-const SignUp = () => {
+const SignUp = ({setLoginUser}) => {
   const History = useHistory();
-
   const [user, setUser] = React.useState({
     name: "",
     email: "",
     password: "",
     repassword: "",
+    contactNumber:"",
+    bool:""
   });
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,15 +22,16 @@ const SignUp = () => {
   };
 
   const register = () => {
-    const { name, email, password, repassword } = user;
+    const { name, email, password, repassword} = user;
     if (name && email && password && repassword) {
       if (email.includes(".com")) {
         if (password === repassword)
           axios
-            .post("http://localhost:9002/api/user/signup", user)
+            .post("http://localhost:9002/api/user/signup",user)
             .then((res) => {
-              console.log(res.data.err);
+              console.log(res.data);
               if (res.data.success === true) {
+                setLoginUser(res.data.data)
                 History.push("/");
               }
             });
@@ -48,7 +50,7 @@ const SignUp = () => {
     <div className="signup_body">
       <div className="signup_container">
       <div className="signup_containerBox">
-        <div style={{ marginTop: "3rem" }} className="row">
+        <div style={{ marginTop: "2rem" }} className="row">
           <div className="col s8 offset-s2">
             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
               <h4>
@@ -95,6 +97,24 @@ const SignUp = () => {
                 name="repassword"
               />
               <label htmlFor="repassword">Re-Enter Password</label>
+            </div>
+            <div className="input-field col s12">
+              <input
+                onChange={handleChange}
+                value={user.contactNumber}
+                type="text"
+                name="contactNumber"
+              />
+              <label htmlFor="contactNumber">Contact Number</label>
+            </div>
+            <div className="input-field col s12">
+              <input
+                onChange={handleChange}
+                value={user.bool}
+                type="text"
+                name="bool"
+              />
+              <label htmlFor="bool">Are you a Vendor Company</label>
             </div>
             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
               <button

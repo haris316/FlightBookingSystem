@@ -5,6 +5,7 @@ import "./Users.css";
 
 function Users() {
   const [data, setData] = React.useState([]);
+  let [bool,setBool] = React.useState(true);
   React.useEffect(() => {
     axios.get("http://localhost:9002/api/user/getAllUsers").then((res) => {
       console.log(res);
@@ -13,7 +14,7 @@ function Users() {
         setData(res.data.data);
       }
     });
-  }, []);
+  }, [bool]);
   const deleteUser = (name, password, email, key) => {
     const collection = {
       name: name,
@@ -42,6 +43,7 @@ function Users() {
             <img
               onClick={() => {
                 deleteUser(value.name, value.password, value.email, "01135813");
+                setBool(!bool);
               }}
               className="oneUser_icon"
               src={del}

@@ -23,11 +23,13 @@ const Login = ({ setLoginUser }) => {
     const { email, password } = user;
     if (email && password) {
       axios.post("http://localhost:9002/api/user/login", user).then((res) => {
-        alert(res.data.message);
         if (res.data.success === true) {
-          console.log(res.status);
-          setLoginUser(res.data);
-          History.push("/admin");
+          setLoginUser(res.data.user);
+          sessionStorage.setItem("token",res.data.token);
+          History.push("/");
+        }
+        if (res.data.success === false) {
+          alert(res.data.message);
         }
       });
     } else {

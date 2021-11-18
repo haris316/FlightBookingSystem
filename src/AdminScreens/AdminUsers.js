@@ -1,9 +1,8 @@
 import React from "react";
 import "./AdminHome.css";
 import Users from "./AdminComponents/Users/Users";
-import Vendors from "./AdminComponents/Vendors/Vendors";
 import {Link } from "react-router-dom";
-function AdminHome({setLoginUser }) {
+function AdminUsers({setLoginUser }) {
   return (
     <>
       <div className="adminhome_container">
@@ -26,10 +25,10 @@ function AdminHome({setLoginUser }) {
           </Link>
           <Link to="/">
             <div
-        onClick={() => {
-          setLoginUser(null);
-          sessionStorage.clear();
-        }}
+                     onClick={() => {
+                        setLoginUser(null);
+                        sessionStorage.clear();
+                      }}
               className="sidebar_object"
             >
               <span>Logout</span>
@@ -39,12 +38,10 @@ function AdminHome({setLoginUser }) {
         <div className="admin_content">
           <h1>Users</h1>
           <Users />
-          <h1>Vendors</h1>
-          <Vendors />
         </div>
       </div>
     </>
   );
 }
 
-export default AdminHome;
+export default AdminUsers;

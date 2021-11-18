@@ -2,8 +2,10 @@ import React from "react";
 import axios from "axios";
 import del from "../../../assets/delete.png";
 import "./Vendors.css";
-
+import {useHistory} from "react-router-dom"
+import Login from "../../../components/Login/Login";
 function Vendors() {
+  const history = useHistory();
   const [data, setData] = React.useState([]);
   React.useEffect(() => {
     axios.get("http://localhost:9002/api/com/getAllCompanies").then((res) => {
@@ -30,6 +32,7 @@ function Vendors() {
         if (res.data.success === true) {
           console.log(res.status);
           alert("Vendor Deleted Successfully. Refresh Page");
+          history.push("/admin")
         }
       });
   };
@@ -67,6 +70,7 @@ function Vendors() {
     }
   };
   return (
+    <>
     <div className="allVendors">
       <div className="oneVendor">
         <div className="oneVendor_text">Company Name</div>
@@ -75,6 +79,7 @@ function Vendors() {
       </div>
       {listVendors()}
     </div>
+    </>
   );
 }
 

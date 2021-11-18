@@ -1,11 +1,11 @@
 import React from "react";
-import "./Home.css";
+import "./VendorHome.css";
 import { Link } from "react-router-dom";
 
 const Home = ({ setLoginUser, user }) => {
   return (
     <div className="Home">
-      <div className="text"> User Home Page</div>
+      <div className="text">Vendor Home Page</div>
       <br />
       <div>Welcome {user.name}</div>
       <div
