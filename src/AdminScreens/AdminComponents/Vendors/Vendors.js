@@ -7,7 +7,9 @@ import Login from "../../../components/Login/Login";
 function Vendors() {
   const history = useHistory();
   const [data, setData] = React.useState([]);
+  let [bool,setBool] = React.useState(true);
   React.useEffect(() => {
+    const role = {"role":"admin"};
     axios.get("http://localhost:9002/api/com/getAllCompanies").then((res) => {
       console.log(res);
       if (res.data.success === true) {
@@ -15,14 +17,13 @@ function Vendors() {
         setData(res.data.data);
       }
     });
-  }, []);
+  }, [bool]);
 
-  const deleteVendor = (name, contact, country, key) => {
+  const deleteVendor = (name, email, role) => {
     const collection = {
       name: name,
-      contactNumber: contact,
-      country: country,
-      key: key,
+      email: email,
+      role: role,
     };
     console.log(collection)
     axios
@@ -31,8 +32,8 @@ function Vendors() {
         console.log(res);
         if (res.data.success === true) {
           console.log(res.status);
-          alert("Vendor Deleted Successfully. Refresh Page");
-          history.push("/admin")
+          alert("Vendor Deleted Successfully.");
+          history.push("/Vendors")
         }
       });
   };
@@ -48,10 +49,10 @@ function Vendors() {
             onClick={() => {
               deleteVendor(
                 value.name,
-                value.contactNumber,
-                value.country,
-                "01135813"
+                value.email,
+                "admin"
               );
+              setBool(!bool);
             }}
             className="oneVendor_icon"
             src={del}

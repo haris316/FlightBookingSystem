@@ -46,7 +46,7 @@ function App() {
             {user && user.role === "admin" ? (
               <AdminUsers user={user} setLoginUser={setLoginUser} />
             ) : (
-              <Error user={user} setLoginUser={setLoginUser}/>
+              <Error/>
             )}
           </Route>
           <Route exact path="/Vendors">

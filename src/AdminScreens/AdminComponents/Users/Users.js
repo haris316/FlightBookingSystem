@@ -6,21 +6,26 @@ import "./Users.css";
 function Users() {
   const [data, setData] = React.useState([]);
   let [bool,setBool] = React.useState(true);
+  
   React.useEffect(() => {
-    axios.get("http://localhost:9002/api/user/getAllUsers").then((res) => {
+    const text="admin"
+    const collection = {
+      role:text
+    }
+    axios.post("http://localhost:9002/api/user/getAllUsers",collection).then((res) => {
       console.log(res);
       if (res.data.success === true) {
         console.log(res.status);
         setData(res.data.data);
       }
-    });
+    })
   }, [bool]);
-  const deleteUser = (name, password, email, key) => {
+  const deleteUser = (name, password, email,role) => {
     const collection = {
       name: name,
       password: password,
       email: email,
-      key: key,
+      role: role,
     };
     axios
       .post("http://localhost:9002/api/user/removeUser", collection)
@@ -28,7 +33,7 @@ function Users() {
         console.log(res);
         if (res.data.success === true) {
           console.log(res.status);
-          alert("User Deleted Successfully. Refresh Page");
+          alert("User Deleted Successfully.");
         }
       });
   };
@@ -42,8 +47,8 @@ function Users() {
           <div className="oneUser_text">{value.contactNumber}</div>
             <img
               onClick={() => {
-                deleteUser(value.name, value.password, value.email, "01135813");
-                setBool(!bool);
+                deleteUser(value.name, value.password, value.email, "admin")
+                setBool(!bool)
               }}
               className="oneUser_icon"
               src={del}

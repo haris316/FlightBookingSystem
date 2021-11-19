@@ -37,10 +37,7 @@ function AdminHome({setLoginUser }) {
           </Link>
         </div>
         <div className="admin_content">
-          <h1>Users</h1>
-          <Users />
-          <h1>Vendors</h1>
-          <Vendors />
+          <h1>Dashboard</h1>
         </div>
       </div>
     </>
